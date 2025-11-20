@@ -1,0 +1,40 @@
+node {
+
+    stage('Preparation') {
+        git branch: 'main', url: 'https://github.com/Ritikrpati23032003/Terraform.git'
+    }
+
+    stage('Build') {
+        dir('day-16-jenkins') {
+            sh 'terraform init'
+        }
+    }
+
+    stage('Plan Build') {
+        dir('day-16-jenkins') {
+            sh 'terraform plan'
+        }
+    }
+
+    stage('Approval') {
+        script {
+            def choice = input(
+                id: 'ApprovePlan',
+                message: 'Terraform plan is shown above. Do you want to APPLY?',
+                parameters: [
+                    choice(name: 'confirm', choices: ['No', 'Yes'], description: 'Apply changes?')
+                ]
+            )
+
+            if (choice == 'No') {
+                error("User cancelled the apply step.")
+            }
+        }
+    }
+
+    stage('Results') {
+        dir('day-16-jenkins') {
+            sh 'terraform ${action} -auto-approve'
+        }
+    }
+}
