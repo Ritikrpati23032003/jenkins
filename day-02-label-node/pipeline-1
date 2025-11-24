@@ -1,0 +1,38 @@
+pipeline {
+    agent {
+        label 'dev'
+    }
+
+    stages {
+
+        stage('git-clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Ritikrpati23032003/jenkins.git'
+            }
+        }
+
+        stage('init') {
+            steps {
+                dir('terraform-jenkins') {
+                    sh "terraform init"
+                }
+            }
+        }
+
+        stage('plan') {
+            steps {
+                dir('terraform-jenkins') {
+                    sh "terraform plan"
+                }
+            }
+        }
+         stage('apply') {
+            steps {
+                dir('terraform-jenkins') {
+                    sh "terraform ${action} -auto-approve"
+                }
+            }
+        }
+
+    }
+}
