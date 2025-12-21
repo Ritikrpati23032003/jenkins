@@ -53,3 +53,9 @@ pipeline {
         }
     }
 }
+
+
+Note:-- 
+install aws credentials plugins
+store secret and acces key at credetials
+
