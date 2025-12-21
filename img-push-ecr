@@ -59,3 +59,10 @@ Note:--
 install aws credentials plugins
 store secret and acces key at credetials
 
+sudo yum install docker -y #linux 2023
+sudo usermod -aG docker ec2-user
+newgrp docker
+sudo service docker start
+sudo chmod 777 /var/run/docker.sock
+
+
