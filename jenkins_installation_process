@@ -52,6 +52,10 @@ sudo rpm -ivh https://github.com/aquasecurity/trivy/releases/download/v0.48.3/tr
 sudo yum -y install wget nfs-utils
 sudo wget -O /etc/yum.repos.d/sonar.repo http://downloads.sourceforge.net/project/sonar-pkg/rpm/sonar.repo
 sudo yum -y install sonar
+
+cd /opt/sonarqube/bin/linux-x86-64
+./sonar.sh start
+./sonar.sh status
 #-----------------------JFROg-----------------------------
 sudo wget https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo -O jfrog-artifactory-rpms.repo;
 
