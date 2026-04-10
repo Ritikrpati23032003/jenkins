@@ -53,6 +53,10 @@ sudo yum -y install wget nfs-utils
 sudo wget -O /etc/yum.repos.d/sonar.repo http://downloads.sourceforge.net/project/sonar-pkg/rpm/sonar.repo
 sudo yum -y install sonar
 
+sudo useradd sonar
+sudo chown -R sonar:sonar /opt/sonarqube
+su - sonar
+
 cd /opt/sonarqube/bin/linux-x86-64
 ./sonar.sh start
 ./sonar.sh status
